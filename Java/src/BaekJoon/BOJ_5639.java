@@ -45,7 +45,6 @@ public class BOJ_5639 {
 			insert(root,Integer.parseInt(data));
 		}
 		
-		System.out.println(root.data);
 		postOrder(root);
 	}
 	
