@@ -10,8 +10,8 @@ public class BOJ_2562 {
 	 * 문제
 	 *  9개의 서로 다른 자연수 중 최대값과 그 최대값이 몇 번째 수인지 찾기
 	 *  
-	 * 시간 : 80 kb 
-	 * 메모리 : 11444 ms
+	 * 시간 : 80 ms 
+	 * 메모리 : 11444 kb
 	 */
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
