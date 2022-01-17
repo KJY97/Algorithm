@@ -25,3 +25,6 @@
 2021-12-16 solved.ac class 1++ 완료
 
 2021-12-24 solved.ac class 2, class 2+ 완료
+
+2022-01-17 solved.ac class 2++ 완료
+
