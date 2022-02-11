@@ -12,6 +12,9 @@ public class SWEA_2805 {
 	 *  농장의 크기 N와 농작물의 가치가 주어질 때, 규칙에 따라 얻을 수 있는 수익은 얼마인지 구하여라.
 	 *   - 농장은 크기는 항상 홀수이다. (1 X 1, 3 X 3 … 49 X 49)
 	 *   - 수확은 항상 농장의 크기에 딱 맞는 정사각형 마름모 형태로만 가능하다.
+	 *   
+	 * 시간: 116 ms
+	 * 메모리: 20,672 kb
 	 */
 	public static void main(String args[]) throws Exception
     {
