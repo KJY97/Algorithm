@@ -17,6 +17,9 @@ public class BOJ_1463 {
 	 *  정수 N이 주어졌을 때, 위와 같은 연산 세 개를 적절히 사용해서 1을 만들려고 한다. 
 	 *  연산을 사용하는 횟수의 최솟값을 출력하시오.
 	 *  - 1 <= N <= 10⁶
+	 *  
+	 * 시간 : 104 ms
+	 * 메모리 : 15700 kb
 	 */
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
