@@ -16,8 +16,8 @@ public class BOJ_1697 {
 	 *  순간이동을 하는 경우에는 1초 후에 2*X의 위치로 이동하게 된다.
 	 *  수빈이와 동생의 위치가 주어졌을 때, 수빈이가 동생을 찾을 수 있는 가장 빠른 시간이 몇 초 후인지 구하는 프로그램을 작성하시오.
 	 *  
-	 * 시간 : 152 ms
-	 * 메모리 : 21716 kb
+	 * 시간 : 160 ms
+	 * 메모리 : 21712 kb
 	 */
 	private static int N, K;
 	public static void main(String[] args) throws IOException {
@@ -35,26 +35,24 @@ public class BOJ_1697 {
 	private static void BFS() {
 		Queue<Integer> queue = new LinkedList<>();
 		int[] time = new int[2*K+1]; // 동생의 위치에서 순간이동을 하는 경우도 고려해야 한다.
-
+		int[] move = new int[3];
+		
 		queue.add(N);
 		
 		while(!queue.isEmpty()) {
 			int cur = queue.poll();
 			
-			// 범위 안 이면서 미방문한 곳이면..
-			if(isRange(cur + 1) && time[cur + 1] == 0) {
-				queue.add(cur + 1);
-				time[cur + 1] = time[cur] + 1;
-			}
+			// 각각 이동할 때의 값을 move에 저장
+			move[0] = cur + 1;
+			move[1] = cur - 1;
+			move[2] = cur * 2;
 			
-			if(isRange(cur - 1) && time[cur - 1] == 0) {
-				queue.add(cur - 1);
-				time[cur - 1] = time[cur] + 1;
-			}
-			
-			if(isRange(cur * 2) && time[cur * 2] == 0) {
-				queue.add(cur * 2);
-				time[cur * 2] = time[cur] + 1;
+			for (int i = 0; i < 3; i++) {
+				// 범위 안 이면서 미방문한 곳이면..
+				if(isRange(move[i]) && time[move[i]] == 0) {
+					queue.add(move[i]);
+					time[move[i]] = time[cur] + 1;
+				}
 			}
 		}
 		
