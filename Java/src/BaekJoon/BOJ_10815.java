@@ -29,8 +29,8 @@ public class BOJ_10815 {
 	 *  메모리: 174208 kb
 	 *  
 	 * 2번의 경우
-	 *  시간: 3484 ms
-	 *  메모리: 181112 kb
+	 *  시간: 3532 ms
+	 *  메모리: 182932 kb
 	 */
 	
 	private static int N, M;
@@ -64,7 +64,7 @@ public class BOJ_10815 {
 		
 		// 상근이가 가지고 있는 숫자 카드가 cards에 포함된 숫자인지 출력 (방법 2가지)
 		useDefindedMethod(); // 1. 반복문으로 직접 정의한 메소드 사용
-//		useBinarySearchMethod(); // 2. 자바에서 제공하는 메소드 사용
+//		useCollectionsMethod(); // 2. 자바에서 제공하는 메소드 사용
 	}
 	
 	// 1. 직접 정의한 binarySearch 메소드 사용
