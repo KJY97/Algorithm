@@ -18,8 +18,8 @@ public class BOJ_2003 {
 	 * => 30,000 * 10,000 = 300,000,000 이므로 int 범위에서 가능하다
 	 * => 투포인터 알고리즘 활용하기
 	 * 
-	 * 시간: 2796 ms
-	 * 메모리: 88576 kb
+	 * 시간: 112 ms
+	 * 메모리: 14308 kb
 	 */
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -28,7 +28,7 @@ public class BOJ_2003 {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 		
-		int[] arr = new int[N];
+		int[] arr = new int[N+1]; // end가 N까지 접근할 수 있도록 하기 위해
 		
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N; i++) {
@@ -38,18 +38,16 @@ public class BOJ_2003 {
 		int cnt = 0; // M이 되는 경우의 수
 		int start = 0, end = 0, sum = 0; // 투 포인터 활용
 		
-		
-		while(start <= end && end < N) {
+		while(end <= N) {
 			
 			if (sum < M) {
 				sum += arr[end++];
 			} else if (sum >= M) {
 				sum -= arr[start++];
 			}
-
+			
 			if (sum == M) cnt++;
 		}
-		
 		
 		System.out.println(cnt);
 	}
