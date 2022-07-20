@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class BOJ_4963 {
+public class BOJ_4963_BFSver {
 
 	/**
 	 * 문제
@@ -19,7 +19,9 @@ public class BOJ_4963 {
 	 *   - w와 h는 50보다 작거나 같은 양의 정수이다.
 	 *   - 1은 땅, 0은 바다이다.
 	 *   - 입력의 마지막 줄에는 0이 두 개 주어진다.
-	 *   
+	 * 
+	 * => BFS로 풀어보기
+	 * 
 	 * 시간: 140 ms
 	 * 메모리: 13808 kb
 	 */
