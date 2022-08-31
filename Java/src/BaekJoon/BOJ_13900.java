@@ -20,9 +20,11 @@ public class BOJ_13900 {
 	 * => 100,000 x 100,000 = 10,000,000,000
 	 *    즉, 1억  = 1초를 넘기 때문에 이중반복문으로 할 경우 O(N²)이 되어 시간초과 발생
 	 * => (1*2)+(1*3)+(1*4)+(2*3)+(2*4)+(3*4)
-	 *     = (1*(2+3+4))+(2(3*4))+(3*4)
+	 *     = (1*(2+3+4))+(2*(3*4))+(3*4)
 	 *    앞의 항이 하나씩 커질수록 뒤의 항에 곱해지는 값은 하나씩 적어진다.
 	 * 
+	 * 시간: 216 ms
+	 * 메모리: 24960 kb
 	 */
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,17 +33,17 @@ public class BOJ_13900 {
 		int N = Integer.parseInt(br.readLine());
 		int arr[] = new int[N];
 		
+		long tmp = 0;
+		
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N; i++) {
 			arr[i] = Integer.parseInt(st.nextToken());
+			tmp += arr[i];
 		}
 		
 		long sum = 0;
-		for (int i = 0; i < N-1; i++) {
-			int tmp = 0;
-			for (int j = i+1; j < N; j++) {
-				tmp += arr[j];
-			}
+		for (int i = 0; i < N; i++) {
+			tmp -= arr[i];
 			sum += tmp * arr[i];
 		}
 		
