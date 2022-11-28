@@ -19,10 +19,11 @@ public class BOJ_7795 {
 	 *   - A의 수 N과 B의 수 M (1 ≤ N, M ≤ 20,000)
 	 *   - 제한시간 1초
 	 * 
-	 * => Arrays.sort() 사용
+	 * => 이분 탐색 활용
+	 *    시간 N long M으로 줄어든다.
 	 * 
-	 * 시간: 1144 ms
-	 * 메모리: 42804 kb
+	 * 시간: 364 ms
+	 * 메모리: 40672 kb
 	 */
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -48,20 +49,33 @@ public class BOJ_7795 {
 				Brr[i] = Integer.parseInt(st.nextToken());
 			}
 			
-			Arrays.sort(Arr);
+			// 오름차순 정렬
 			Arrays.sort(Brr);
 			
 			int cnt = 0;
-			for (int i = N-1; i >= 0; i--) {
-				for (int j = 0; j < M; j++) {
-					if (Arr[i] <= Brr[j]) break;
-					cnt++;
-				}
+			for (int i = 0; i < N; i++) {
+				cnt += solution(Brr, 0, M-1, Arr[i]);
 			}
-			
 			System.out.println(cnt);
 		}
 
+	}
+	
+	// target보다 작은 게 몇개인가?
+	private static int solution(int[] Brr, int start, int end, int target) {
+		int cnt = -1;
+		while(start <= end) {
+			int mid = (start + end) / 2;
+			
+			if (Brr[mid] < target) {
+				cnt = mid;
+				start = mid + 1;
+			} else {
+				end = mid - 1;
+			}
+		}
+		
+		return cnt+1;
 	}
 
 }
