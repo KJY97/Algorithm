@@ -20,9 +20,12 @@ public class BOJ_1940 {
 	 *   - 갑옷을 만드는데 필요한 수 M(1 ≤ M ≤ 10,000,000) 
 	 *   - N개의 재료들이 가진 고유한 번호들이 공백을 사이에 두고 주어진다. 고유한 번호는 100,000보다 작거나 같은 자연수이다.
 	 *   - 제한시간 2초
-	 *   
-	 * 시간: 388 ms
-	 * 메모리: 15872 kb
+	 * 
+	 * => 투포인터 활용
+	 *    2중 반복문과 비교하면 시간 2배 감소
+	 *    
+	 * 시간: 140 ms
+	 * 메모리: 16072 kb
 	 */
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,18 +45,18 @@ public class BOJ_1940 {
 		Arrays.sort(material);
 		
 		// 갑옷은 2개의 재료로 만들어진다.
+		int start = 0, end = N-1;
 		int cnt = 0;
-		for (int i = 0; i < N; i++) {
-			for (int j = i+1; j < N; j++) {
-				int sum = material[i] + material[j];
-				
-				// M이 아닌 경우, 갑옷으로 만들어지지 않는다.
-				if (sum != M) continue;
+		while(start < end) {
+			if (material[start] + material[end] == M) {
 				cnt++;
+				start++;
 			}
-			
-			// 재료 하나의 값이 M보다 크면 더이상 탐색할 필요가 없다.
-			if (material[i] > M) break;
+			else if (material[start] + material[end] > M) {
+				end--;
+			} else {
+				start++;
+			}
 		}
 		
 		System.out.println(cnt);
