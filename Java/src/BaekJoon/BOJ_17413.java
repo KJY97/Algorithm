@@ -34,32 +34,37 @@ public class BOJ_17413 {
 		for (int index = 0; index < S.length(); index++) {
 			char ch = S.charAt(index);
 			
+			// 태그를 만났다면 isTag 변경
 			if (ch == '<') isTag = true;
 			else if (ch == '>') {
+				// 태그를 닫으면서 바로 다음 단어로 넘어가기
 				isTag = false;
 				sb.append(ch);
 				continue;
 			}
 			
 			if (isTag) {
+				// 태그 안 단어는 뒤집지 않는다.
+				// 태그 단어 시작 전, 저장해둔 단어 뒤집기
 				while(!stack.isEmpty()) {
 					sb.append(stack.pop());
 				}
 				sb.append(ch);
-			}
-			else {
+			} else {
 				// 태그로 시작하지 않는다면 공백을 만나기 전까지의 단어를 뒤집는다.
+				// 스택을 이용해서 단어 뒤집기
 				if (ch != ' ') stack.add(ch);
 				else {
 					// 공백이 나오면 stack에 있는 단어 출력
 					while(!stack.isEmpty()) {
 						sb.append(stack.pop());
 					}
-					sb.append(' ');
+					sb.append(ch); // 공백 출력
 				}
 			}
 		}
 		
+		// 스택에 남아있는 단어 모두 출력(뒤집기)
 		while(!stack.isEmpty()) {
 			sb.append(stack.pop());
 		}
