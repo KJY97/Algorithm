@@ -3,6 +3,7 @@ package BaekJoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class BOJ_11576 {
@@ -24,12 +25,16 @@ public class BOJ_11576 {
 	 *     또한 수가 0으로 시작하는 경우는 존재하지 않는다.
 	 *   - A진법으로 나타낸 수를 10진법으로 변환하였을 때의 값은 양의 정수이며 2²⁰보다 작다.
 	 *     2²⁰ = 1,048,576
-	 *     
+	 * 
+	 * => StringBuilder를 사용해서 reverse를 통해 출력해보았지만 계속 fail 발생
+	 * => stack으로 문제 해결
+	 * 
+	 * 시간: 80 ms
+	 * 메모리: 11552 kb
 	 */
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		StringBuilder sb = new StringBuilder();
 		
 		int A = Integer.parseInt(st.nextToken()); // 미래세계에서 사용하는 진법
 		int B = Integer.parseInt(st.nextToken()); // 정이가 사용하는 진법
@@ -41,22 +46,25 @@ public class BOJ_11576 {
 		int Ato10 = 0;
 		
 		// 높은 자리수부터 주어진다.
+		// ex) 2 16 = 2*A + 16*1
 		st = new StringTokenizer(br.readLine());
-		for (int i = 0; i < m; i++) {
-			Ato10 += Math.pow(A, m-i-1) * Integer.parseInt(st.nextToken());
+		for (int i = m; i > 0; i--) {
+			Ato10 += Integer.parseInt(st.nextToken()) * Math.pow(A, i-1);
 		}
 		
 		// 10진법 -> B진법
-		// 뒷자리부터 값을 저장하므로 출력 시 뒤집어야 한다.
-		// 맨 마지막에 공백 주의
-		while(Ato10 > 0) {
-			sb.append(Ato10 % B).append(' ');
+		// 뒷자리부터 값을 저장하므로 출력 시 뒤집어야 한다. => 스택 사용
+		Stack<Integer> stack = new Stack<>();
+		while(Ato10 >= B) {
+			stack.add(Ato10 % B);
 			Ato10 /= B;
 		}
 		
-		// 뒤집으면 맨 앞에 공백이 있다.
-		// 공백을 제거하기 위해 subString을 사용하여 1번째 인덱스부터 출력
-		System.out.println(sb.reverse().substring(1));
+		stack.add(Ato10);
+		
+		while(!stack.isEmpty()) {
+			System.out.print(stack.pop() + " ");
+		}
 	}
 
 }
